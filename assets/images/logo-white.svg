@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="brandGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#0EA5E9" />
+      <stop offset="100%" stop-color="#2DD4BF" />
+    </linearGradient>
+    <linearGradient id="sunGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#FB7185" />
+    </linearGradient>
+  </defs>
+
+  <!-- Icon Emblem -->
+  <g transform="translate(6, 6)">
+    <!-- Outer ring background -->
+    <circle cx="24" cy="24" r="23" fill="rgba(255,255,255,0.08)" stroke="url(#brandGradLight)" stroke-width="2"/>
+    
+    <!-- Sun rising over horizon -->
+    <path d="M16 25 A8 8 0 0 1 32 25 Z" fill="url(#sunGradLight)" opacity="0.95" />
+    
+    <!-- Stylized waves/island curve -->
+    <path d="M10 28 C 15 24, 21 30, 27 26 C 33 22, 36 27, 38 28" stroke="url(#brandGradLight)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M12 33 C 17 30, 23 34, 29 31 C 33 29, 36 32, 37 33" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Compass pointer / Arrow head pointing to exploration -->
+    <polygon points="24,6 27,20 24,17 21,20" fill="url(#brandGradLight)"/>
+    <polygon points="24,17 27,20 24,22 21,20" fill="#38BDF8" opacity="0.6"/>
+  </g>
+
+  <!-- Typography -->
+  <!-- "MORDEN" in Crisp White -->
+  <text x="68" y="32" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="#FFFFFF">
+    MORDEN
+  </text>
+  
+  <!-- "TOURIST" in bright aqua-teal -->
+  <text x="180" y="32" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="700" font-size="24" letter-spacing="2.5" fill="#2DD4BF">
+    TOURIST
+  </text>
+
+  <!-- Subtitle Tagline -->
+  <text x="69" y="47" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="3" fill="#94A3B8">
+    PREMIUM TRAVEL &amp; DESTINATIONS
+  </text>
+  <circle cx="270" cy="44.5" r="2.5" fill="#FB7185" />
+</svg>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Packages Management | Morden Tourist (mordentourist.com)</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+  <!-- Login Authentication Overlay -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <img src="assets/images/logo.svg" alt="Morden Tourist" style="max-height: 44px; margin-bottom: 8px;">
+      <h2 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: 6px;">Admin Authentication</h2>
+      <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 24px;">
+        Sign in to manage tour packages, pricing, destinations, and inquiries.
+      </p>
+
+      <form id="loginForm">
+        <div class="form-group" style="text-align: left;">
+          <label for="loginUser">Username</label>
+          <input type="text" id="loginUser" class="form-control" value="admin" required placeholder="admin">
+        </div>
+        <div class="form-group" style="text-align: left;">
+          <label for="loginPass">Password</label>
+          <input type="password" id="loginPass" class="form-control" value="morden2026" required placeholder="morden2026">
+        </div>
+
+        <div id="loginError" style="display: none; color: var(--color-danger); font-size: 0.85rem; margin-bottom: 16px; background: #FEF2F2; padding: 10px; border-radius: 6px; border: 1px solid #FCA5A5;"></div>
+
+        <button type="submit" class="btn btn-secondary" style="width: 100%; padding: 12px; font-size: 1rem;">
+          <i class="fa-solid fa-lock"></i> Sign In to Dashboard
+        </button>
+
+        <div style="margin-top: 20px; padding: 12px; background: #F1F5F9; border-radius: 8px; font-size: 0.8rem; color: #475569; text-align: left;">
+          <strong style="color: var(--color-primary);"><i class="fa-solid fa-circle-info"></i> Default Credentials:</strong><br>
+          Username: <code>admin</code><br>
+          Password: <code>morden2026</code>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Main Layout -->
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <a href="index.html" target="_blank" class="sidebar-brand">
+          <img src="assets/images/logo-white.svg" alt="Morden Tourist">
+          <span>Admin</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Management</div>
+        
+        <button class="sidebar-link active" data-tab="tabPackages">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <span>Tour Packages</span>
+          <span class="sidebar-badge" id="sidebarPkgBadge">12</span>
+        </button>
+
+        <button class="sidebar-link" data-tab="tabInquiries">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Leads &amp; Inquiries</span>
+          <span class="sidebar-badge" id="sidebarInqBadge">0</span>
+        </button>
+
+        <button class="sidebar-link" data-tab="tabSettings">
+          <i class="fa-solid fa-gear"></i>
+          <span>Portal Settings</span>
+        </button>
+
+        <div class="nav-section-title">Live Website</div>
+
+        <a href="tourist-places.html" target="_blank" class="sidebar-link">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Tourist Places Page</span>
+        </a>
+
+        <a href="destinations.html" target="_blank" class="sidebar-link">
+          <i class="fa-solid fa-compass"></i>
+          <span>Destinations Guide</span>
+        </a>
+
+        <a href="index.html" target="_blank" class="sidebar-link">
+          <i class="fa-solid fa-house"></i>
+          <span>Website Homepage</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-user-profile">
+          <div class="admin-avatar">A</div>
+          <div class="admin-info">
+            <div class="admin-name">Morden Administrator</div>
+            <div class="admin-role">Chandigarh Desk</div>
+          </div>
+          <button id="logoutBtn" class="btn btn-outline btn-sm btn-icon" title="Logout" style="color: #EF4444; border-color: rgba(255,255,255,0.15); background: transparent;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--color-primary); margin: 0;">
+            Package Control Center
+          </h2>
+        </div>
+
+        <div class="header-actions">
+          <a href="tourist-places.html" target="_blank" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-eye"></i> View Live Site
+          </a>
+          <button class="btn btn-coral btn-sm" id="openAddPackageBtn">
+            <i class="fa-solid fa-plus"></i> Add New Package
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Pages Container -->
+      <div class="admin-content">
+
+        <!-- TAB 1: PACKAGES MANAGEMENT -->
+        <div class="tab-pane" id="tabPackages">
+
+          <!-- Key Metrics -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon blue">
+                <i class="fa-solid fa-boxes-stacked"></i>
+              </div>
+              <div class="metric-details">
+                <small>Total Packages</small>
+                <h3 id="metricTotalPackages">12</h3>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon teal">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <div class="metric-details">
+                <small>Active Categories</small>
+                <h3 id="metricCategories">5</h3>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon coral">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+              </div>
+              <div class="metric-details">
+                <small>Average Starting Price</small>
+                <h3 id="metricAvgPrice">₹48,500</h3>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon green">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div class="metric-details">
+                <small>Inquiries Logged</small>
+                <h3 id="metricInquiries">0</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Packages Management Card -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <div class="content-card-title">
+                <i class="fa-solid fa-umbrella-beach" style="color: var(--color-secondary);"></i>
+                Tour Packages &amp; Island Escapes
+              </div>
+
+              <!-- Toolbar -->
+              <div class="table-toolbar">
+                <div class="header-search" style="width: 220px;">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="text" id="searchPackageInput" placeholder="Search packages...">
+                </div>
+
+                <select id="filterCategorySelect" class="filter-select">
+                  <option value="all">All Categories</option>
+                  <option value="luxury">Luxury &amp; Beach</option>
+                  <option value="adventure">Adventure &amp; Safari</option>
+                  <option value="family">Theme Parks &amp; Family</option>
+                  <option value="culture">Culture &amp; Heritage</option>
+                </select>
+
+                <select id="sortPackageSelect" class="filter-select">
+                  <option value="newest">Sort: Newest First</option>
+                  <option value="priceAsc">Price: Low to High</option>
+                  <option value="priceDesc">Price: High to Low</option>
+                  <option value="rating">Top Rated</option>
+                  <option value="title">Title (A - Z)</option>
+                </select>
+
+                <button id="exportPackagesBtn" class="btn btn-outline btn-sm" title="Export as JSON file">
+                  <i class="fa-solid fa-download"></i> Export JSON
+                </button>
+
+                <label class="btn btn-outline btn-sm" style="margin: 0; cursor: pointer;" title="Import from JSON file">
+                  <i class="fa-solid fa-upload"></i> Import JSON
+                  <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                </label>
+
+                <button id="resetPackagesBtn" class="btn btn-outline btn-sm" title="Reset to original 12 packages" style="color: var(--color-danger);">
+                  <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Package Details</th>
+                    <th>Category &amp; Badges</th>
+                    <th>Starting Rate</th>
+                    <th>Rating</th>
+                    <th>Status</th>
+                    <th style="text-align: right; padding-right: 24px;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="packagesTableBody">
+                  <!-- Populated by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: INQUIRIES & LEADS -->
+        <div class="tab-pane" id="tabInquiries" style="display: none;">
+          <div class="content-card">
+            <div class="content-card-header">
+              <div class="content-card-title">
+                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                Customer Leads &amp; Tour Inquiries
+              </div>
+              <div>
+                <button id="clearInquiriesBtn" class="btn btn-outline btn-sm" style="color: var(--color-danger);">
+                  <i class="fa-solid fa-trash"></i> Clear Inquiry History
+                </button>
+              </div>
+            </div>
+
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Client Name</th>
+                    <th>Phone / WhatsApp</th>
+                    <th>Email Address</th>
+                    <th>Selected Destination</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="inquiriesTableBody">
+                  <!-- Populated by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: PORTAL SETTINGS -->
+        <div class="tab-pane" id="tabSettings" style="display: none;">
+          <div class="content-card" style="max-width: 700px;">
+            <div class="content-card-header">
+              <div class="content-card-title">
+                <i class="fa-solid fa-sliders" style="color: var(--color-secondary);"></i>
+                Portal Security &amp; Contact Configurations
+              </div>
+            </div>
+            <div style="padding: 24px;">
+              <form id="adminSettingsForm">
+                <div class="form-group">
+                  <label>Official Helpline &amp; WhatsApp</label>
+                  <input type="text" class="form-control" value="+91 83519 17891 (8351917891)" readonly style="background: #F1F5F9;">
+                  <small style="color: var(--color-text-muted);">Active across all website WhatsApp dispatchers.</small>
+                </div>
+
+                <div class="form-group">
+                  <label>Registered Office Address</label>
+                  <input type="text" class="form-control" value="SCO 64-65, 2nd Floor, Sector 34-A, Chandigarh, India - 160022" readonly style="background: #F1F5F9;">
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 24px 0;">
+
+                <h4 style="margin-bottom: 14px; color: var(--color-primary);"><i class="fa-solid fa-key"></i> Update Admin Password</h4>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="settingsNewPass">New Password</label>
+                    <input type="password" id="settingsNewPass" class="form-control" placeholder="Enter new password">
+                  </div>
+                  <div class="form-group">
+                    <label for="settingsConfirmPass">Confirm New Password</label>
+                    <input type="password" id="settingsConfirmPass" class="form-control" placeholder="Re-type new password">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-secondary" style="margin-top: 10px;">
+                  <i class="fa-solid fa-floppy-disk"></i> Save New Password
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ADD PACKAGE MODAL -->
+  <div class="modal-overlay" id="addPackageModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-plus-circle" style="color: var(--color-secondary);"></i> Add New Tour Package</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="addPackageForm">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="addPkgTitle">Package Title *</label>
+            <input type="text" id="addPkgTitle" class="form-control" placeholder="e.g. Yas Island Thrills & Marina" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="addPkgLocation">Location / Archipelago *</label>
+              <input type="text" id="addPkgLocation" class="form-control" placeholder="e.g. Abu Dhabi Archipelago, UAE" required>
+            </div>
+            <div class="form-group">
+              <label for="addPkgCategory">Category *</label>
+              <select id="addPkgCategory" class="form-control" required>
+                <option value="family">Theme Parks &amp; Family</option>
+                <option value="luxury">Luxury &amp; Beach</option>
+                <option value="adventure">Adventure &amp; Safari</option>
+                <option value="culture">Culture &amp; Heritage</option>
+                <option value="luxury adventure">Luxury &amp; Adventure (Combo)</option>
+                <option value="culture luxury">Culture &amp; Luxury (Combo)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="addPkgPrice">Starting Price (₹) *</label>
+              <input type="number" id="addPkgPrice" class="form-control" placeholder="48999" required min="1000">
+            </div>
+            <div class="form-group">
+              <label for="addPkgUnit">Price Unit</label>
+              <input type="text" id="addPkgUnit" class="form-control" value="/person" placeholder="/person">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="addPkgBadge">Highlight Badge Tag (Optional)</label>
+              <input type="text" id="addPkgBadge" class="form-control" placeholder="e.g. Theme Park Capital">
+            </div>
+            <div class="form-group">
+              <label for="addPkgRating">Rating (Out of 5.0)</label>
+              <input type="number" id="addPkgRating" class="form-control" value="4.9" step="0.1" min="1" max="5">
+            </div>
+          </div>
+
+          <!-- Image Chooser -->
+          <div class="form-group">
+            <label>Select Destination Cover Image</label>
+            <input type="text" id="addPkgImageInput" class="form-control" placeholder="Image file path" value="assets/images/destinations/yas-island.jpg" required>
+            
+            <small style="color: var(--color-text-muted); display: block; margin-top: 4px;">Choose from high-res local destination library:</small>
+            <div class="image-selector-grid" id="addImageSelectorGrid">
+              <!-- Populated via JS -->
+            </div>
+
+            <div style="margin-top: 10px; display: flex; align-items: center; gap: 14px;">
+              <label class="btn btn-outline btn-sm" style="cursor: pointer; margin: 0;">
+                <i class="fa-solid fa-file-arrow-up"></i> Or Upload Custom Image File
+                <input type="file" id="addPkgImageUpload" accept="image/*" style="display: none;">
+              </label>
+              <img id="addPkgImagePreview" src="assets/images/destinations/yas-island.jpg" alt="Preview" style="height: 40px; width: 60px; object-fit: cover; border-radius: 4px; border: 1px solid var(--color-border);">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="addPkgDescription">Short Overview / Description *</label>
+            <textarea id="addPkgDescription" class="form-control" rows="3" placeholder="Highlight why travelers should choose this island experience..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="addPkgFeatures">Key Feature Pills (Comma-separated)</label>
+            <input type="text" id="addPkgFeatures" class="form-control" placeholder="e.g. F1 Circuit, Waterworld, Luxury Resorts" value="Top Attraction, VIP Passes, Private Transfers">
+          </div>
+
+          <div class="form-group">
+            <label for="addPkgInclusions">Package Inclusions (Comma-separated)</label>
+            <input type="text" id="addPkgInclusions" class="form-control" placeholder="e.g. 3 Nights 5-Star Stay, Airport Transfers, Multi-Park Passes" value="3 Nights 5-Star Stay, Airport Transfers, Daily Breakfast">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-coral">
+            <i class="fa-solid fa-plus"></i> Save &amp; Publish Package
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EDIT PACKAGE MODAL -->
+  <div class="modal-overlay" id="editPackageModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-pen-to-square" style="color: var(--color-secondary);"></i> Edit Tour Package</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="editPackageForm">
+        <input type="hidden" id="editPkgId">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="editPkgTitle">Package Title *</label>
+            <input type="text" id="editPkgTitle" class="form-control" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="editPkgLocation">Location / Archipelago *</label>
+              <input type="text" id="editPkgLocation" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="editPkgCategory">Category *</label>
+              <select id="editPkgCategory" class="form-control" required>
+                <option value="family">Theme Parks &amp; Family</option>
+                <option value="luxury">Luxury &amp; Beach</option>
+                <option value="adventure">Adventure &amp; Safari</option>
+                <option value="culture">Culture &amp; Heritage</option>
+                <option value="luxury adventure">Luxury &amp; Adventure (Combo)</option>
+                <option value="culture luxury">Culture &amp; Luxury (Combo)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="editPkgPrice">Starting Price (₹) *</label>
+              <input type="number" id="editPkgPrice" class="form-control" required min="1000">
+            </div>
+            <div class="form-group">
+              <label for="editPkgUnit">Price Unit</label>
+              <input type="text" id="editPkgUnit" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="editPkgBadge">Highlight Badge Tag</label>
+              <input type="text" id="editPkgBadge" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="editPkgRating">Rating (Out of 5.0)</label>
+              <input type="number" id="editPkgRating" class="form-control" step="0.01" min="1" max="5">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Cover Image</label>
+            <input type="text" id="editPkgImageInput" class="form-control" required>
+            
+            <div class="image-selector-grid" id="editImageSelectorGrid">
+              <!-- Populated via JS -->
+            </div>
+
+            <div style="margin-top: 10px; display: flex; align-items: center; gap: 14px;">
+              <label class="btn btn-outline btn-sm" style="cursor: pointer; margin: 0;">
+                <i class="fa-solid fa-file-arrow-up"></i> Upload Replacement Image
+                <input type="file" id="editPkgImageUpload" accept="image/*" style="display: none;">
+              </label>
+              <img id="editPkgImagePreview" src="" alt="Preview" style="height: 40px; width: 60px; object-fit: cover; border-radius: 4px; border: 1px solid var(--color-border);">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="editPkgDescription">Description *</label>
+            <textarea id="editPkgDescription" class="form-control" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="editPkgFeatures">Key Feature Pills (Comma-separated)</label>
+            <input type="text" id="editPkgFeatures" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="editPkgInclusions">Package Inclusions (Comma-separated)</label>
+            <input type="text" id="editPkgInclusions" class="form-control">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-secondary">
+            <i class="fa-solid fa-floppy-disk"></i> Update Package
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="deletePackageModal">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="color: var(--color-danger);"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Deletion</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center; padding: 30px 24px;">
+        <i class="fa-solid fa-trash-can" style="font-size: 3rem; color: var(--color-danger); margin-bottom: 16px;"></i>
+        <h4>Are you sure?</h4>
+        <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-top: 8px;">
+          You are about to delete <strong id="deletePkgTitle" style="color: var(--color-primary);"></strong>. This package will no longer be visible to visitors.
+        </p>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+          <i class="fa-solid fa-trash"></i> Delete Package
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="admin-toast"></div>
+
+  <!-- Shared Data Store & Admin Controller -->
+  <script src="assets/js/packages-data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
