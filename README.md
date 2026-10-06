@@ -1,4 +1,4 @@
-﻿# Morden Tourist Agency - mordentourist.com
+# Morden Tourist Agency - mordentourist.com
 
 > Official web portal and tour booking management platform for **Morden Tourist** travel agency.
 
@@ -42,6 +42,7 @@ This repository contains the complete frontend website, responsive island packag
 - **Website Domain:** [mordentourist.com](https://mordentourist.com)
 - **Phone / WhatsApp:** [+91 98052 60021](tel:9805260021)
 - **Address:** SCO 64-65, 2nd Floor, Sector 34-A, Chandigarh, India
+- **Office Hours:** Monday – Friday: 9:30 AM – 6:30 PM (Saturday by appointment)
 - **Support Email:** `contact@mordentourist.com`
 
 ---
