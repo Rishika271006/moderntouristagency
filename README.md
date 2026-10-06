@@ -1,9 +1,9 @@
-# Morden Tourist Agency - mordentourist.com
+﻿# Morden Tourist Agency - mordentourist.com
 
 > Official web portal and tour booking management platform for **Morden Tourist** travel agency.
 
 [![Website](https://img.shields.io/badge/Website-mordentourist.com-0EA5E9)](https://mordentourist.com)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-+91%2083519%2017891-25D366?logo=whatsapp)](https://wa.me/918351917891)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-+91%2083519%2017891-25D366?logo=whatsapp)](https://wa.me/919805260021)
 [![License](https://img.shields.io/badge/License-Proprietary-0B1B3D)](#)
 
 ---
@@ -20,7 +20,7 @@ This repository contains the complete frontend website, responsive island packag
 
 - **Responsive Single-Row Package Carousel**: Interactive slider with drag-to-scroll, touch swipe, floating chevron navigation, and pagination dots.
 - **Dynamic Category Filtering**: Seamlessly filter packages by theme (*Luxury & Beach, Adventure & Safari, Theme Parks & Family, Culture & Heritage*) and geography (*Arabian Gulf, Indian Ocean/Tropical*).
-- **Direct WhatsApp Booking Engine**: All tour inquiries and contact requests format structured WhatsApp messages dispatched instantly to `+91 83519 17891`.
+- **Direct WhatsApp Booking Engine**: All tour inquiries and contact requests format structured WhatsApp messages dispatched instantly to `+91 98052 60021`.
 - **Integrated Admin Portal (`admin.html`)**:
   - Secure credentials login (`admin` / `morden2026`).
   - Add, edit, and delete tour packages with live synchronization via `localStorage`.
@@ -40,7 +40,7 @@ This repository contains the complete frontend website, responsive island packag
 
 - **Agency Name:** Morden Tourist
 - **Website Domain:** [mordentourist.com](https://mordentourist.com)
-- **Phone / WhatsApp:** [+91 83519 17891](tel:8351917891)
+- **Phone / WhatsApp:** [+91 98052 60021](tel:9805260021)
 - **Address:** SCO 64-65, 2nd Floor, Sector 34-A, Chandigarh, India
 - **Support Email:** `contact@mordentourist.com`
 

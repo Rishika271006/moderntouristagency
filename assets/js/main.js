@@ -1,4 +1,4 @@
-/**
+﻿/**
  * MORDEN TOURIST (mordentourist.com) - Interactive Scripts
  * Destination Filtering, Booking Modal, Mobile Nav & Micro-interactions
  */
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // WhatsApp Business Desk Configuration
-  const WHATSAPP_NUMBER = '918351917891';
+  const WHATSAPP_NUMBER = '919805260021';
 
   function openWhatsApp(textMessage) {
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(textMessage)}`;

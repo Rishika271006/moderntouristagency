@@ -1,4 +1,4 @@
-/**
+﻿/**
  * MORDEN TOURIST (mordentourist.com) - Admin Panel Logic
  * Package Management (Add, Edit, Delete, Filter, Export/Import) & Inquiry Tracker
  */
@@ -581,7 +581,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${inq.email || '-'}</td>
         <td><span class="badge-pill badge-adventure">${inq.destination || 'General Tour'}</span></td>
         <td>
-          <a href="https://wa.me/918351917891?text=${encodeURIComponent('Hello ' + inq.name + ', following up on your Morden Tourist inquiry for ' + inq.destination)}" target="_blank" class="btn btn-outline btn-sm" style="color: #25D366; border-color: #25D366;">
+          <a href="https://wa.me/919805260021?text=${encodeURIComponent('Hello ' + inq.name + ', following up on your Morden Tourist inquiry for ' + inq.destination)}" target="_blank" class="btn btn-outline btn-sm" style="color: #25D366; border-color: #25D366;">
             <i class="fa-brands fa-whatsapp"></i> Chat
           </a>
         </td>

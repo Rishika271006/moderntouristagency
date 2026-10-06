@@ -1,4 +1,4 @@
-/**
+﻿/**
  * MORDEN TOURIST (mordentourist.com) - Packages Data & Management System
  * Shared state between Public Pages and Admin Panel
  */
@@ -403,7 +403,7 @@ const PackagesManager = {
           <i class="fa-solid fa-umbrella-beach" style="font-size: 3rem; color: var(--color-accent-teal); margin-bottom: 16px;"></i>
           <h3>No Packages Available Currently</h3>
           <p style="color: var(--color-text-muted);">Please check back soon or contact our travel desk to curate a custom itinerary.</p>
-          <a href="tel:8351917891" class="btn btn-primary" style="margin-top: 14px;"><i class="fa-solid fa-phone"></i> Call 8351917891</a>
+          <a href="tel:9805260021" class="btn btn-primary" style="margin-top: 14px;"><i class="fa-solid fa-phone"></i> Call 9805260021</a>
         </div>
       `;
       return;
